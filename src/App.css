@@ -1,0 +1,28 @@
+.quiz-app {
+  text-align: center;
+  height: 100%;
+}
+
+.quiz {
+  padding-top: 15%;
+}
+
+.answers > div {
+  padding: 0 !important;
+}
+
+.answer span:first-child + span {
+  padding-left: 20px;
+}
+
+.question__text {
+  font-size: 40px;
+  padding-bottom: 30px; 
+  width: 80%;
+  margin: 0 auto;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
