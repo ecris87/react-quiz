@@ -1,5 +1,5 @@
 [{
-    "text": "Which React component lifecycle hook is the one to use for AJAX and / or DOM interactions?",
+    "text": "Which React component lifecycle hook is the one to use for AJAX requests and / or DOM interactions?",
     "answers": [{
         "text": "componentWillMount",
         "valid": false
@@ -13,9 +13,9 @@
         "text": "componentWillReceiveProps",
         "valid": false
     }],
-    "details": "`componentDidMount` is recommended by React for side-effects. When using `componentWillMount` you risk triggering render on unmounted component."
+    "details": "`componentDidMount` is recommended by React for side-effects. It may seem that `componentWillMount` is also a good choice, however it carries a risk of triggering render on unmounted component."
 },{
-    "text": "How do you change a component's state in React?",
+    "text": "How do you update a component's state in React?",
     "answers": [{
         "text": "this.setState({monkey: 'Capuchin'})",
         "valid": true
@@ -60,7 +60,7 @@
     }],
     "details": "Babel compiles JSX down to React.createElement() calls which return objects called 'React elements'. React reads these objects and uses them to construct the DOM and keep it up to date."
 },{
-    "text": "How do you change a component's state in React?",
+    "text": "How would you increment the value of a counter stored in the state of a React component?",
     "answers": [{
         "text": "this.setState({\ncounter: this.state.counter + this.props.increment\n});",
         "valid": false
@@ -68,7 +68,7 @@
         "text": "this.setState((prevState, props) => ({\ncounter: prevState.counter + props.increment\n}));",
         "valid": true
     }],
-    "details": "Because this.state may be updated asynchronously, you should not rely on their values for calculating the next state."
+    "details": "Because this.state may be updated asynchronously, you should not rely on its values for calculating the next state. Instead you should use the functional version of setState which provides prevState as one of the arguments."
 },{
     "text": "Which of the following are true about handling events with React?",
     "answers": [{
@@ -87,16 +87,16 @@
 },{
     "text": "Given a React component defined using the class form, which is the sequence of calls for its first render?",
     "answers": [{
-        "text": "constructor, componentWillMount, render, componentDidMount",
+        "text": "1. constructor \n 2. componentWillMount \n 3. render \n 4. componentDidMount \n",
         "valid": true
     },{
-        "text": "constructor, componentWillMount, componentDidMount, render",
+        "text": "1. constructor \n 2. componentWillMount \n 3. componentDidMount \n 4. render \n",
         "valid": false
     },{
-        "text": "constructor, componentWillMount, render, componentWillUnmount",
+        "text": "1. constructor \n 2. componentWillMount \n 3. render \n 4. componentWillUnmount \n",
         "valid": false
     },{
-        "text": "constructor, componentWillMount, render, componentDidUpdate",
+        "text": "1. constructor \n 2. componentWillMount \n 3. render \n 4. componentDidUpdate",
         "valid": false
     }]
 },{

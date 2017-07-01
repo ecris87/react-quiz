@@ -1,86 +1,80 @@
 import React from 'react';
 import questions from '../data/questions.json';
-import PrimaryButton from '../common/PrimaryButton';
 import Question from './Question';
+import QuestionFooter from './QuestionFooter';
 import AnswerList from './AnswerList';
 import QuizNotice from './QuizNotice';
 import QuizResults from './QuizResults';
-import { grey600 } from 'material-ui/styles/colors';
 
 
 class Quiz extends React.Component {
+  initialState = {
+      questionIndex: 0,
+      selectedAnswerIndex: null,
+      shouldShowQuestionFooter: false,
+      shouldRevealCorrectAnswer: false,
+      correctAnswers: 0,
+      incorrectAnswers: 0
+  }
+
   constructor() {
     super();
-    this.state = this.getInitialState();
+    this.state = this.initialState;
     this.onWrongAnswerChosen = this.onWrongAnswerChosen.bind(this);
     this.onRightAnswerChosen = this.onRightAnswerChosen.bind(this);
     this.displayNextQuestion = this.displayNextQuestion.bind(this);
     this.startOver = this.startOver.bind(this);
   }
 
-  getInitialState() {
-    return {
-      questionIndex: 0,
-      selectedAnswerIndex: null,
-      shouldRevealCorrectAnswer: false,
-      correctAnswers: 0,
-      incorrectAnswers: 0
-    };
-  }
-
   startOver() {
-    this.setState(this.getInitialState());
+    this.setState(this.initialState);
   }
 
   onRightAnswerChosen(answerIndex) {
-    this.setState({
-      selectedAnswerIndex: answerIndex,
-      shouldRevealCorrectAnswer: false
-    });
-    this.trackScore({isCorrect: true});
-    this.displayNextQuestion();
+    this.handleAnswer({index: answerIndex, isCorrect: true});
   }
 
   onWrongAnswerChosen(answerIndex) {
-    this.setState({
-      selectedAnswerIndex: answerIndex,
-      shouldRevealCorrectAnswer: true
-    });
-    this.trackScore({isCorrect: false});
+    this.handleAnswer({index: answerIndex, isCorrect: false});
   }
 
-  trackScore(options = {}) {
-    let trackingKey = (options.isCorrect) ? 'correctAnswers' : 'incorrectAnswers';
+  handleAnswer(answer = {}) {
+    if (this.state.shouldShowQuestionFooter) {
+      return; // ignore any other answer that is clicked after the initial one
+    }
+
+    const trackingKey = (answer.isCorrect) ? 'correctAnswers' : 'incorrectAnswers';
+    
     this.setState((prevState) => ({
-        [trackingKey]: prevState[trackingKey] + 1
+      selectedAnswerIndex: answer.index,
+      shouldRevealCorrectAnswer: !answer.isCorrect,
+      shouldShowQuestionFooter: true,
+      [trackingKey]: prevState[trackingKey] + 1
     }));
   }
 
   displayNextQuestion() {
-    setTimeout(() => {
-      this.setState((prevState) => ({
-        questionIndex: prevState.questionIndex + 1,
-        selectedAnswerIndex: null,
-        shouldRevealCorrectAnswer: false
-      }));
-    }, 500);
+    this.setState((prevState) => ({
+      questionIndex: prevState.questionIndex + 1,
+      selectedAnswerIndex: null,
+      shouldRevealCorrectAnswer: false,
+      shouldShowQuestionFooter: false
+    }));
   }
 
   render() {
     const currentQuestion = questions[this.state.questionIndex];
+
+    if (!currentQuestion) {
+      return <QuizNotice text="Whops! Something went wrong" startOver={this.startOver} />
+    }
 
     if (this.state.questionIndex === questions.length) {
       return <QuizResults 
         correctAnswers={this.state.correctAnswers} 
         incorrectAnswers={this.state.incorrectAnswers} 
         numberOfQuestions={questions.length}
-        startOver={this.startOver}/>
-    }
-
-    if (!currentQuestion) {
-      return <QuizNotice 
-        text="Whops! Something went wrong" 
-        startOver={this.startOver}/>
+        startOver={this.startOver} />
     }
 
     return (
@@ -93,14 +87,9 @@ class Quiz extends React.Component {
               shouldRevealCorrectAnswer={this.state.shouldRevealCorrectAnswer}
               selectedAnswerIndex={this.state.selectedAnswerIndex}/>
 
-            {(this.state.shouldRevealCorrectAnswer) &&
-              <p style={{fontStyle: 'italic', color: grey600, marginBottom: '40px'}}>
-                {currentQuestion.details}
-              </p>
+            {(this.state.shouldShowQuestionFooter) &&
+              <QuestionFooter questionDetails={currentQuestion.details} displayNextQuestion={this.displayNextQuestion} />
             }
-            
-            {(this.state.shouldRevealCorrectAnswer) && 
-              <PrimaryButton label="NEXT" onClick={this.displayNextQuestion}/>}
         </div>
     );
   }
