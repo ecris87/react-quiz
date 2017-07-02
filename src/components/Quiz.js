@@ -65,15 +65,15 @@ class Quiz extends React.Component {
   render() {
     const currentQuestion = questions[this.state.questionIndex];
 
-    if (!currentQuestion) {
-      return <QuizNotice text="Whops! Something went wrong" startOver={this.startOver} />
-    }
-
     if (this.state.questionIndex === questions.length) {
       return <QuizResults 
         correctAnswers={this.state.correctAnswers} 
         incorrectAnswers={this.state.incorrectAnswers} 
         numberOfQuestions={questions.length}
+        startOver={this.startOver} />
+    } else if (!currentQuestion) {
+      return <QuizNotice 
+        text="Whops! Something went wrong" 
         startOver={this.startOver} />
     }
 
