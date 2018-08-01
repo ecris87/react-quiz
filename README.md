@@ -1,4 +1,4 @@
-# Work in progress :construction:
+# React Quiz
 
 A short quiz to test your [React](https://facebook.github.io/react/) knowledge.
 
