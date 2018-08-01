@@ -1,154 +1,238 @@
-[{
-    "text": "Which React component lifecycle hook is the one to use for AJAX requests and / or DOM interactions?",
-    "answers": [{
-        "text": "componentWillMount",
+[
+  {
+    "text":
+      "Which React component lifecycle hook should we use when we want to make AJAX requests or interact with the DOM?",
+    "answers": [
+      {
+        "text": "constructor",
         "valid": false
-    },{
+      },
+      {
         "text": "componentDidMount",
         "valid": true
-    },{
-        "text": "componentWillUpdate",
-        "valid": false
-    },{
-        "text": "componentWillReceiveProps",
-        "valid": false
-    }],
-    "details": "`componentDidMount` is recommended by React for side-effects. It may seem that `componentWillMount` is also a good choice, however it carries a risk of triggering render on unmounted component."
-},{
-    "text": "How do you update a component's state in React?",
-    "answers": [{
-        "text": "this.setState({monkey: 'Capuchin'})",
-        "valid": true
-    },{
-        "text": "this.state.monkey = 'Capuchin'",
-        "valid": false
-    },{
-        "text": "this.updateState({monkey: 'Capuchin'})",
-        "valid": false
-    },{
-        "text": "this.setState('monkey', 'Capuchin')",
-        "valid": false
-    }],
-    "details": "this.state is initialized in the constructor, afterwards it should never be mutated directly, as subsequent calls of setState() may replace the mutation you made. Treat this.state as if it were immutable."
-},{
-    "text": "What is JSX?",
-    "answers": [{
-        "text": "a form of HTML",
-        "valid": false
-    },{
-        "text": "a template language",
-        "valid": false
-    },{
-        "text": "a syntax extension to JavaScript",
-        "valid": true
-    }],
-    "details": "JSX is a syntax extension to JavaScript used to describe what the UI should look like. JSX may remind you of a template language, but it comes with the full power of JavaScript."
-},{
-    "text": "What does JSX produce?",
-    "answers": [{
-        "text": "DOM Elements",
-        "valid": false
-    },{
-        "text": "React components",
-        "valid": false
-    },{
-        "text": "React elements",
-        "valid": true
-    },{
-        "text": "HTML",
-        "valid": false
-    }],
-    "details": "Babel compiles JSX down to React.createElement() calls which return objects called 'React elements'. React reads these objects and uses them to construct the DOM and keep it up to date."
-},{
-    "text": "How would you increment the value of a counter stored in the state of a React component?",
-    "answers": [{
-        "text": "this.setState({\ncounter: this.state.counter + this.props.increment\n});",
-        "valid": false
-    },{
-        "text": "this.setState((prevState, props) => ({\ncounter: prevState.counter + props.increment\n}));",
-        "valid": true
-    }],
-    "details": "Because this.state may be updated asynchronously, you should not rely on its values for calculating the next state. Instead you should use the functional version of setState which provides prevState as one of the arguments."
-},{
-    "text": "Which of the following are true about handling events with React?",
-    "answers": [{
-        "text": "React events are named using camelCase, rather than lowercase.",
-        "valid": false
-    },{
-        "text": "With JSX you pass a function as the event handler, rather than a string.",
-        "valid": false
-    },{
-        "text": "Event handlers will be passed instances of SyntheticEvent, a cross-browser wrapper around the browser's native event.",
-        "valid": false
-    },{
-        "text": "All three",
-        "valid": true
-    }]
-},{
-    "text": "Given a React component defined using the class form, which is the sequence of calls for its first render?",
-    "answers": [{
-        "text": "1. constructor \n 2. componentWillMount \n 3. render \n 4. componentDidMount \n",
-        "valid": true
-    },{
-        "text": "1. constructor \n 2. componentWillMount \n 3. componentDidMount \n 4. render \n",
-        "valid": false
-    },{
-        "text": "1. constructor \n 2. componentWillMount \n 3. render \n 4. componentWillUnmount \n",
-        "valid": false
-    },{
-        "text": "1. constructor \n 2. componentWillMount \n 3. render \n 4. componentDidUpdate",
-        "valid": false
-    }]
-},{
-    "text": "Which is the sequence of calls for a React component update (subsequent renders)?",
-    "answers": [{
-        "text": "shouldComponentUpdate, componentWillUpdate, componentWillReceiveProps, render, componentDidUpdate",
-        "valid": false
-    },{
-        "text": "componentWillReceiveProps, shouldComponentUpdate, componentWillUpdate, render, componentDidUpdate",
-        "valid": true
-    },{
-        "text": "componentWillReceiveProps, render, shouldComponentUpdate, componentWillUpdate, componentDidUpdate",
-        "valid": false
-    }]
-},{
-    "text": "Which of these component lifecyle hooks cannot use this.setState?",
-    "answers": [{
-        "text": "render",
-        "valid": false
-    },{
+      },
+      {
         "text": "componentWillUnmount",
         "valid": false
-    },{
+      },
+      {
         "text": "shouldComponentUpdate",
         "valid": false
-    },{
-        "text": "componentWillUpdate",
+      }
+    ],
+    "details": "`componentDidMount` is recommended by React for side-effects."
+  },
+  {
+    "text": "How do you update a component's state in React?",
+    "answers": [
+      {
+        "text": "this.setState({monkey: 'Capuchin'})",
+        "valid": true
+      },
+      {
+        "text": "this.state.monkey = 'Capuchin'",
         "valid": false
-    },{
+      },
+      {
+        "text": "this.updateState({monkey: 'Capuchin'})",
+        "valid": false
+      },
+      {
+        "text": "this.setState('monkey', 'Capuchin')",
+        "valid": false
+      }
+    ],
+    "details":
+      "this.state is initialized in the constructor, afterwards it should never be mutated directly, as subsequent calls of setState() may replace the mutation you made. Treat this.state as if it were immutable."
+  },
+  {
+    "text": "What is JSX?",
+    "answers": [
+      {
+        "text": "a form of HTML",
+        "valid": false
+      },
+      {
+        "text": "a template language",
+        "valid": false
+      },
+      {
+        "text": "a syntax extension to JavaScript",
+        "valid": true
+      }
+    ],
+    "details":
+      "JSX is a syntax extension to JavaScript used to describe what the UI should look like. JSX may remind you of a template language, but it comes with the full power of JavaScript."
+  },
+  {
+    "text": "What does JSX produce?",
+    "answers": [
+      {
+        "text": "DOM Elements",
+        "valid": false
+      },
+      {
+        "text": "React components",
+        "valid": false
+      },
+      {
+        "text": "React elements",
+        "valid": true
+      },
+      {
+        "text": "HTML",
+        "valid": false
+      }
+    ],
+    "details":
+      "Babel compiles JSX down to React.createElement() calls which return objects called 'React elements'. React reads these objects and uses them to construct the DOM and keep it up to date."
+  },
+  {
+    "text":
+      "How would you increment the value of a counter stored in the state of a React component?",
+    "answers": [
+      {
+        "text":
+          "this.setState({\ncounter: this.state.counter + this.props.increment\n});",
+        "valid": false
+      },
+      {
+        "text":
+          "this.setState((prevState, props) => ({\ncounter: prevState.counter + props.increment\n}));",
+        "valid": true
+      }
+    ],
+    "details":
+      "Because this.state may be updated asynchronously, you should not rely on its values for calculating the next state. Instead you should use the functional version of setState which provides prevState as one of the arguments."
+  },
+  {
+    "text": "Which of the following are true about handling events with React?",
+    "answers": [
+      {
+        "text":
+          "React events are named using camelCase, rather than lowercase.",
+        "valid": false
+      },
+      {
+        "text":
+          "With JSX you pass a function as the event handler, rather than a string.",
+        "valid": false
+      },
+      {
+        "text":
+          "Event handlers will be passed instances of SyntheticEvent, a cross-browser wrapper around the browser's native event.",
+        "valid": false
+      },
+      {
+        "text": "All three",
+        "valid": true
+      }
+    ]
+  },
+  {
+    "text":
+      "Given a React component defined using the class form, which is the sequence of calls for its first render?",
+    "answers": [
+      {
+        "text":
+          "1. constructor \n 2. getDerivedStateFromProps \n 3. render \n 4. componentDidMount \n",
+        "valid": true
+      },
+      {
+        "text":
+          "1. constructor \n 2. getDerivedStateFromProps \n 3. componentDidMount \n 4. render \n",
+        "valid": false
+      },
+      {
+        "text":
+          "1. constructor \n 2. componentDidMount \n 3. render \n 4. componentWillUnmount \n",
+        "valid": false
+      },
+      {
+        "text":
+          "1. constructor \n 2. componentDidMount \n 3. render \n 4. componentDidUpdate",
+        "valid": false
+      }
+    ]
+  },
+  {
+    "text":
+      "When does a React component enter the update phase of its lifecycle?",
+    "answers": [
+      {
+        "text": "When it receives new props or forceUpdate is called",
+        "valid": false
+      },
+      {
+        "text":
+          "When it receives new props or setState is called or forceUpdate is called",
+        "valid": true
+      },
+      {
+        "text": "When it receives new props",
+        "valid": false
+      }
+    ]
+  },
+  {
+    "text": "Which of these component lifecyle hooks cannot use this.setState?",
+    "answers": [
+      {
+        "text": "render",
+        "valid": false
+      },
+      {
+        "text": "componentWillUnmount",
+        "valid": false
+      },
+      {
+        "text": "shouldComponentUpdate",
+        "valid": false
+      },
+      {
+        "text": "getDerivedStateFromProps",
+        "valid": false
+      },
+      {
         "text": "All of the above",
         "valid": true
-    }],
+      }
+    ],
     "details": ""
-},{
+  },
+  {
     "text": "How does data flow in React?",
-    "answers": [{
-        "text": "bidirectional: data can go back and forth from parent components to their children",
+    "answers": [
+      {
+        "text":
+          "bidirectional: data can go back and forth from parent components to their children",
         "valid": false
-    },{
-        "text": "unidirectional: data can only go from parent components to their children through read-only props",
+      },
+      {
+        "text":
+          "unidirectional: data can only go from parent components to their children through read-only props",
         "valid": true
-    }]
-},{
-    "text": "What is the difference between React components defined as functions and those defined using ES6 classes?",
-    "answers": [{
-        "text": "functional components cannot receive props while class components may receive props",
+      }
+    ]
+  },
+  {
+    "text":
+      "What is the difference between React components defined as functions and those defined using ES6 classes?",
+    "answers": [
+      {
+        "text":
+          "functional components cannot receive props while class components may receive props",
         "valid": false
-    },{
-        "text": "functional components are always stateless while class components may contain state",
+      },
+      {
+        "text":
+          "functional components are always stateless while class components may contain state",
         "valid": true
-    },{
+      },
+      {
         "text": "there is no difference besides the way they are defined",
         "valid": false
-    }]
-}]
+      }
+    ]
+  }
+]
